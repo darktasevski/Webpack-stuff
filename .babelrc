@@ -1,0 +1,16 @@
+{	
+	// not needed as env installs all recommended plugins
+	// "plugins": ["transform-es2015-arrow-functions", "async-to-promises"],
+	"presets": [
+		[
+			"env",
+			{
+				"targets": {
+					"browsers": ["last 2 versions"]
+				},
+				"debug": true
+			}
+		]
+	],
+	"plugins": ["transform-runtime"],
+}
