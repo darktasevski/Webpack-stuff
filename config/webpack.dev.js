@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require('webpack');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	// Point of entry, from where our code is run from
@@ -25,7 +27,13 @@ module.exports = {
 		contentBase: 'dist',
 		// Enable this if we want to have errors displayed on browser page, instead of just console
 		overlay: true,
+		hot: true,
+		stats: {
+			// Add colors to the terminal output
+			colors: true,
+		},
 	},
+	devtool: 'source-map',
 	module: {
 		// These are the rules that Webpack use when encounters various file types
 		rules: [
@@ -65,6 +73,7 @@ module.exports = {
 			{
 				test: /\.html$/,
 				use: [
+					/* htmlWebpackPlugin does this for us
 					{
 						loader: 'file-loader',
 						options: {
@@ -80,8 +89,9 @@ module.exports = {
 							publicPath: '../',
 						},
 					},
+					*/
 					{
-						// htnl loader does the linting and then passes result to other loaders
+						// html loader does the linting and then passes result to other loaders
 						// again, reversed module order
 						loader: 'html-loader',
 						options: {
@@ -93,4 +103,11 @@ module.exports = {
 			},
 		],
 	},
+	plugins: [
+		new webpack.HotModuleReplacementPlugin(),
+		// This will automatically inject script tags into index.html
+		new htmlWebpackPlugin({
+			template: './src/index.html',
+		}),
+	],
 };
