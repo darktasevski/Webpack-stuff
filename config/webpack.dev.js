@@ -65,7 +65,7 @@ module.exports = {
 							// Tell webpack how the file should be named
 							// We can add hash to the image with something like this
 							// name: 'images/[name]-[hash:8].[ext]',
-							name: 'images/[name].[ext]',
+							name: 'images/[name]-[hash:8].[ext]',
 						},
 					},
 				],
@@ -101,13 +101,30 @@ module.exports = {
 					},
 				],
 			},
+			{
+				test: /\.pug$/,
+				use: [
+					{
+						loader: 'pug-loader',
+					},
+				],
+			},
+			{
+				test: /\.hbs$/,
+				use: [
+					{
+						loader: 'handlebars-loader',
+					},
+				],
+			},
 		],
 	},
 	plugins: [
 		new webpack.HotModuleReplacementPlugin(),
 		// This will automatically inject script tags into index.html
 		new htmlWebpackPlugin({
-			template: './src/index.html',
+			template: './src/index.hbs',
+			title: "Link's journal",
 		}),
 	],
 };
