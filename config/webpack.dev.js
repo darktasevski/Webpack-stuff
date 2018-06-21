@@ -10,6 +10,8 @@ module.exports = {
 	entry: {
 		// Bundle
 		main: ['./src/main.js'],
+		// typescript entry point
+		ts: ['./src/index.ts'],
 	},
 	// This is available only since W4
 	mode: 'development',
@@ -42,6 +44,15 @@ module.exports = {
 				use: [
 					{
 						loader: 'babel-loader',
+					},
+				],
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.ts$/,
+				use: [
+					{
+						loader: 'awesome-typescript-loader',
 					},
 				],
 				exclude: /node_modules/,
