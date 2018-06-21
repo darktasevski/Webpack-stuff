@@ -55,6 +55,19 @@ module.exports = {
 				use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 			},
 			{
+				// test indicates the file extension that we want to target
+				test: /\.sass$/,
+				// Here we specify loaders for that filetype
+				// This loaders will run in the reverse order
+				// style-loader is responsible for injecting css into html
+				use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' },
+					{ loader: 'postcss-loader' },
+					{ loader: 'sass-loader' },
+				],
+			},
+			{
 				// We can target multiple image filetypes with something like this
 				// /\.(jpg|gif|png)$/
 				test: /\.jpg$/,
