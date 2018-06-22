@@ -9,9 +9,16 @@ module.exports = {
 	// main: ['core-js/fn/promise', './src/main.js'],
 	entry: {
 		// Bundle
-		main: ['./src/main.js'],
+		main: ['./src/main'],
 		// typescript entry point
-		ts: ['./src/index.ts'],
+		// ts: ['./src/index.ts'],
+		// Polyfills should go above main file they are supposed to enhance
+		polyfills: ['./src/angular-polyfills'],
+		angular: ['./src/angular'],
+	},
+	resolve: {
+		//  Tell webpack that entry files are using specific extensions, so that we can omit them there
+		extensions: ['.js', '.ts'],
 	},
 	// This is available only since W4
 	mode: 'development',
@@ -27,6 +34,8 @@ module.exports = {
 	devServer: {
 		// Everything is served from dist
 		contentBase: 'dist',
+		// We want to use this if we're going to use Angular routing
+		historyApiFallback: true,
 		// Enable this if we want to have errors displayed on browser page, instead of just console
 		overlay: true,
 		hot: true,
@@ -66,11 +75,7 @@ module.exports = {
 				use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 			},
 			{
-				// test indicates the file extension that we want to target
 				test: /\.sass$/,
-				// Here we specify loaders for that filetype
-				// This loaders will run in the reverse order
-				// style-loader is responsible for injecting css into html
 				use: [
 					{ loader: 'style-loader' },
 					{ loader: 'css-loader' },
@@ -144,10 +149,21 @@ module.exports = {
 		],
 	},
 	plugins: [
+		// This will enable HMR
 		new webpack.HotModuleReplacementPlugin(),
+		// This plugin will cause the relative path of the module to be displayed when HMR is enabled. Suggested for use in development.
+		new webpack.NamedModulesPlugin(),
+		// The ContextReplacementPlugin allows you to override the inferred information.
+		new webpack.ContextReplacementPlugin(
+			// This regex is a way to indicate both Win and Mac versions of directory systems
+			// Win uses \, Mac uses /
+			/angular(\\|\/)core/,
+			path.join(__dirname, './src'),
+			{}
+		),
 		// This will automatically inject script tags into index.html
 		new htmlWebpackPlugin({
-			template: './src/index.hbs',
+			template: './src/index.ejs',
 			title: "Link's journal",
 		}),
 	],

@@ -6,6 +6,14 @@
 	"description": "Webpack",
 	"repository": "?.git",
 	"dependencies": {
+		"@angular/common": "^6.0.6",
+		"@angular/compiler": "^6.0.6",
+		"@angular/core": "^6.0.6",
+		"@angular/forms": "^6.0.6",
+		"@angular/http": "^6.0.6",
+		"@angular/platform-browser": "^6.0.6",
+		"@angular/platform-browser-dynamic": "^6.0.6",
+		"@angular/router": "^6.0.6",
 		"awesome-typescript-loader": "^5.2.0",
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.3",
@@ -16,6 +24,7 @@
 		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-react": "^6.24.1",
+		"core-js": "^2.5.7",
 		"css-loader": "^0.28.10",
 		"express": "^4.16.3",
 		"extract-loader": "1.0.2",
@@ -33,6 +42,8 @@
 		"react": "^16.4.1",
 		"react-dom": "^16.4.1",
 		"react-hot-loader": "^4.0.0",
+		"reflect-metadata": "^0.1.12",
+		"rxjs": "^6.2.1",
 		"sass-loader": "^7.0.3",
 		"style-loader": "^0.20.2",
 		"typescript": "^2.9.2",
@@ -41,11 +52,17 @@
 		"webpack-cli": "^2.0.9",
 		"webpack-dev-middleware": "^3.1.3",
 		"webpack-dev-server": "^3.0.0",
-		"webpack-hot-middleware": "^2.22.2"
+		"webpack-hot-middleware": "^2.22.2",
+		"zone.js": "^0.8.26"
 	},
 	"scripts": {
 		"start": "webpack-dev-server --config=config/webpack.dev.js",
 		"build": "webpack --config=config/webpack.dev.js",
-		"dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
+		"dev": "nodemon --inspect --watch config --watch src/server src/server/main.js",
+		"prod": "NODE_ENV=production node src/server/main.js"
+	},
+	"devDependencies": {
+		"@types/core-js": "^2.5.0",
+		"@types/node": "^10.3.4"
 	}
 }
