@@ -8,8 +8,15 @@ module.exports = {
 	// Here the polyfills will be included in file before our code
 	// main: ['core-js/fn/promise', './src/main.js'],
 	entry: {
-		// Bundle
-		main: ['./src/main'],
+		// We can require packages here, before our entry file
+		// They will count like we've already imported them
+		main: [
+			'babel-runtime/regenerator',
+			'react-hot-loader/patch',
+			'webpack-hot-middleware/client?reload=true',
+			'babel-register',
+			'./src/main',
+		],
 		// typescript entry point
 		// ts: ['./src/index.ts'],
 		// Polyfills should go above main file they are supposed to enhance

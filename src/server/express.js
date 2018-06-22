@@ -8,11 +8,20 @@ const compiler = webpack(config);
 
 const webpackDevMiddleware = require('webpack-dev-middleware')(compiler, config.devServer);
 const webpackHotMiddleware = require('webpack-hot-middleware')(compiler);
-const staticMiddleware = express.static('dist');
 
 server.use(webpackDevMiddleware);
 server.use(webpackHotMiddleware);
-server.use(staticMiddleware);
+
+const expressStaticGzip = require('express-static-gzip');
+server.use(
+	'/',
+	expressStaticGzip('dist', {
+		enableBrotli: true,
+	})
+);
+
+// const staticMiddleware = express.static('dist');
+// server.use(staticMiddleware);
 
 const PORT = process.env.PORT || 8080;
 
