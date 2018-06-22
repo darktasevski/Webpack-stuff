@@ -15,6 +15,8 @@ server.use(webpackDevMiddleware);
 server.use(webpackHotMiddleware);
 server.use(staticMiddleware);
 
-server.listen(8080, () => {
-	console.log('Server has started');
+const PORT = process.env.PORT || 8080;
+
+server.listen(PORT, () => {
+	console.log(`Server has started on port ${PORT}`);
 });

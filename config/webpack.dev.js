@@ -13,8 +13,8 @@ module.exports = {
 		// typescript entry point
 		// ts: ['./src/index.ts'],
 		// Polyfills should go above main file they are supposed to enhance
-		polyfills: ['./src/angular-polyfills'],
-		angular: ['./src/angular'],
+		// polyfills: ['./src/angular-polyfills'],
+		// angular: ['./src/angular'],
 	},
 	resolve: {
 		//  Tell webpack that entry files are using specific extensions, so that we can omit them there
