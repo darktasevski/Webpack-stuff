@@ -1,5 +1,4 @@
 import express from 'express';
-import path from 'path';
 const webpack = require('webpack');
 
 const config = require('../../config/webpack.dev');
