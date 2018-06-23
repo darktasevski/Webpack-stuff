@@ -18,8 +18,6 @@ module.exports = env => {
 			//  Tell webpack that entry files are using specific extensions, so that we can omit them there
 			extensions: ['.js', '.ts'],
 		},
-		// This is available only since W4
-		mode: 'production',
 		// target where to output parsed files
 		output: {
 			// File name | [name] becomes the name of the entry.main
@@ -30,6 +28,15 @@ module.exports = env => {
 			publicPath: '/',
 		},
 		devtool: 'source-map',
+		devServer: {
+			contentBase: 'dist',
+			overlay: true,
+			stats: {
+				colors: true,
+			},
+		},
+		// This is available only since W4
+		mode: 'production',
 		module: {
 			// These are the rules that Webpack use when encounters various file types
 			rules: [
@@ -87,6 +94,14 @@ module.exports = env => {
 								// name: 'images/[name]-[hash:8].[ext]',
 								name: 'images/[name]-[hash:8].[ext]',
 							},
+						},
+					],
+				},
+				{
+					test: /\.md$/,
+					use: [
+						{
+							loader: 'markdown-with-front-matter-loader',
 						},
 					],
 				},

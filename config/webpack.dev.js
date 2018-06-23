@@ -11,10 +11,10 @@ module.exports = {
 		// We can require packages here, before our entry file
 		// They will count like we've already imported them
 		main: [
-			'babel-runtime/regenerator',
 			'react-hot-loader/patch',
-			'webpack-hot-middleware/client?reload=true',
+			'babel-runtime/regenerator',
 			'babel-register',
+			'webpack-hot-middleware/client?reload=true',
 			'./src/main',
 		],
 		// typescript entry point
@@ -28,7 +28,7 @@ module.exports = {
 		extensions: ['.js', '.ts'],
 	},
 	// This is available only since W4
-	mode: 'development',
+	mode: 'production',
 	// target where to output parsed files
 	output: {
 		// File name | [name] becomes the name of the entry.main
@@ -42,7 +42,7 @@ module.exports = {
 		// Everything is served from dist
 		contentBase: 'dist',
 		// We want to use this if we're going to use Angular routing
-		historyApiFallback: true,
+		// historyApiFallback: true,
 		// Enable this if we want to have errors displayed on browser page, instead of just console
 		overlay: true,
 		hot: true,
@@ -134,6 +134,14 @@ module.exports = {
 							// tell webpack that we want to target src attr in img
 							attrs: ['img:src'],
 						},
+					},
+				],
+			},
+			{
+				test: /\.md$/,
+				use: [
+					{
+						loader: 'markdown-with-front-matter-loader',
 					},
 				],
 			},

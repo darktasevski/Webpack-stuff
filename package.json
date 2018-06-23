@@ -38,6 +38,7 @@
 		"handlebars-loader": "^1.7.0",
 		"html-loader": "^0.5.5",
 		"html-webpack-plugin": "^3.2.0",
+		"markdown-with-front-matter-loader": "^0.1.0",
 		"mini-css-extract-plugin": "^0.4.0",
 		"node-sass": "^4.9.0",
 		"nodemon": "^1.17.5",
@@ -65,9 +66,9 @@
 	},
 	"scripts": {
 		"start": "webpack-dev-server --config=config/webpack.dev.js",
-		"build": "webpack --config=config/webpack.prod.js --env.NODE_ENV=production",
+		"build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
 		"build:dev": "webpack --config=config/webpack.dev.js",
-		"dev": "nodemon --inspect --watch config --watch src/server src/server/main.js",
+		"dev": "nodemon --inspect --watch src/server --watch config src/server/main.js",
 		"prod": "NODE_ENV=production node src/server/main.js"
 	},
 	"devDependencies": {
