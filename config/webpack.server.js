@@ -1,31 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
+const NodeExternals = require('webpack-node-externals');
 
 module.exports = env => {
 	return {
 		entry: {
-			vendor: ['react', 'lodash', 'react-dom'],
-			main: ['./src/main.js'],
+			server: ['./src/server/main.js'],
 		},
 		mode: 'production',
 		output: {
 			filename: '[name]-bundle.js',
-			path: path.resolve(__dirname, '../dist'),
-			publicPath: '/',
+			path: path.resolve(__dirname, '../build'),
 		},
-		devServer: {
-			contentBase: 'dist',
-			overlay: true,
-			stats: {
-				colors: true,
-			},
-		},
+		// Default is web, which tells webpack that our env is browser
+		target: 'node',
+		// this tells webpack that everything that's in node_modules is to be skipped
+		externals: NodeExternals(),
 		optimization: {
 			splitChunks: {
 				chunks: 'all',
@@ -68,6 +59,7 @@ module.exports = env => {
 							loader: 'file-loader',
 							options: {
 								name: 'images/[name].[ext]',
+								emitFile: false,
 							},
 						},
 					],
@@ -84,27 +76,11 @@ module.exports = env => {
 		},
 		plugins: [
 			new ExtractTextPlugin('[name].css'),
-			new OptimizeCssAssetsPlugin({
-				assetNameRegExp: /\.css$/g,
-				cssProcessor: require('cssnano'),
-				cssProcessorOptions: { discardComments: { removeAll: true } },
-				canPrint: true,
-			}),
 			new webpack.DefinePlugin({
 				'process.env': {
 					NODE_ENV: JSON.stringify(env.NODE_ENV),
 				},
 			}),
-			// new HTMLWebpackPlugin({
-			// 	template: './src/index.ejs',
-			// 	inject: true,
-			// 	title: "Link's Journal",
-			// }),
-			new UglifyJSPlugin(),
-			new CompressionPlugin({
-				algorithm: 'gzip',
-			}),
-			new BrotliPlugin(),
 		],
 	};
 };

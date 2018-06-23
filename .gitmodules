@@ -1,0 +1,3 @@
+[submodule "webpack-recipes"]
+	path = webpack-recipes
+	url = https://github.com/lawwantsin/webpack-course

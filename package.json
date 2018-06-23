@@ -41,14 +41,17 @@
 		"webpack-dev-middleware": "2.0.6",
 		"webpack-dev-server": "^3.0.0",
 		"webpack-hot-middleware": "2.21.0",
-		"webpack-mild-compile": "^2.0.0"
+		"webpack-mild-compile": "^2.0.0",
+		"webpack-node-externals": "^1.7.2"
 	},
 	"scripts": {
 		"start": "webpack-dev-server --config=config/webpack.dev.js",
 		"build": "BABEL_ENV=production webpack --config=config/webpack.prod.js --env.NODE_ENV=production ",
+		"build:server": "BABEL_ENV=production webpack --config=config/webpack.server.js --env.NODE_ENV=production --watch ",
 		"build:dev": "webpack --config=config/webpack.dev.js",
 		"dev": "nodemon --inspect --watch src/server --watch config src/server/main.js",
-		"prod": "NODE_ENV=production node src/server/main.js"
+		"dev:server": "nodemon --watch build --watch config --inspect build/server-bundle.js",
+		"prod": "NODE_ENV=production node build/server-bundle.js"
 	},
 	"devDependencies": {
 		"nodemon": "^1.17.5"
