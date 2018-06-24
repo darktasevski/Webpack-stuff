@@ -1,4 +1,4 @@
-require("./main.css")
-require("./content.css")
-require("./images/link.jpg")
-require("./app")
+require('./main.css');
+require('./content.css');
+require('./images/link.png');
+require('./app');
