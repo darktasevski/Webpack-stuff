@@ -1,4 +1,4 @@
-.profile {
+.About {
 	display: flex;
 	-ms-align-items: center;
 	align-items: center;
@@ -7,11 +7,11 @@
 	flex-flow: column;
 }
 
-.profile > img {
-	/* border-radius: 100%; */
-	border: 5px;
+.About > img {
+	/* box-shadow: 0 0 20px black;
+  border-radius: 100%;
+  border: 5px; */
 	width: 300px;
-	box-shadow: 0 0 20px black;
 }
 
 h1 {
@@ -20,4 +20,9 @@ h1 {
 	color: white;
 	text-shadow: 0 0 20px black;
 	text-align: left;
+}
+
+.About .content {
+	grid-template-columns: 1fr;
+	grid-gap: 0;
 }

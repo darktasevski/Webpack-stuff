@@ -1,5 +1,8 @@
 body {
-  margin: 0;
-  background-color: #444;
-  font-family: Helvetica;
+	margin: 0;
+	font-family: Helvetica, 'Noto Sans';
+}
+
+* {
+	box-sizing: border-box;
 }

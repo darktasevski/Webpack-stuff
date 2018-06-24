@@ -1,14 +1,16 @@
-import React from "react"
-import "../css/Gallery.css"
+import React from 'react';
+import '../css/Gallery.css';
 
 const getBundle = () => {
-  import("lodash").then(_ => {
-    console.log("imported", _)
-  })
-}
+	import('lodash').then(_ => {
+		console.log('imported', _);
+	});
+};
 
-export default () => (
-  <div>
-    <h1 onClick={getBundle}>Gallery</h1>
-  </div>
-)
+const Gallery = () => (
+	<div>
+		<h1 onClick={getBundle}>Gallery</h1>
+	</div>
+);
+
+export default Gallery;
