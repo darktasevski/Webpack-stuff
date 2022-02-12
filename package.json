@@ -6,7 +6,7 @@
 	"repository": "https://github.com/Puritanic/Webpack-stuff",
 	"license": "MIT",
 	"dependencies": {
-		"ajv": "^6.2.0",
+		"ajv": "^6.12.3",
 		"babel-cli": "*",
 		"babel-core": "*",
 		"babel-loader": "^7.1.3",
